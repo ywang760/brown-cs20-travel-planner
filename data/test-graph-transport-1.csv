@@ -1,0 +1,8 @@
+origin,destination,type,price,duration
+Boston,Seattle,bus,5,5
+Seattle,Houston,train,5,10
+Seattle,Miami,bus,20,12
+Houston,Seattle,train,5,10
+Houston,Miami,bus,10,3
+Miami,Houston,bus,10,3
+Miami,Seattle,bus,20,12

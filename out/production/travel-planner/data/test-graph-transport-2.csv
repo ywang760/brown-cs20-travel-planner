@@ -1,0 +1,10 @@
+origin,destination,type,price,duration
+Buffalo,Ithaca,bus,1,1
+Buffalo,Albany,train,500,500
+Ithaca,Albany,train,1,1
+Ithaca,Albany,bus,1,1
+Albany,Rochester,bus,10,10
+Albany,Rochester,bus,10,10
+Albany,Rochester,plane,2,3
+Rochester,Potsdam,train,48,23
+Potsdam,Buffalo,train,52,14

@@ -1,0 +1,62 @@
+Diagrams can be found in the graphs.pdf file and also at this link: https://drive.google.com/file/d/14_crzriocO4XHu45mIL5-421XYlgpXNq/view?usp=sharing
+
+BFS:
+- Using graph 1 (data/cities1.csv and data/transport1.csv):
+    - New York City to Providence: Should be a list of a single edge; the shortest path is the bus ($40, 220 min). This test ensures that paths from Boston to Providence do not override the most direct path.
+    - Boston to New York City: There is only one correct path: Plane ($267, 50 min). Checks correct output.
+    - Boston to Providence: There are two possible correct edges here. Train or bus. Since getOutgoingEdges() provides a Set<Edge>, which is an unordered collection, the expected path is just the edge arbitrarily selected by Java. The path from Boston -> New York City -> Providence is not correct.
+    - Providence to Boston: Check that bidirectional edges generate the same path regardless if source and target are switched.
+    - Providence to New York City: All the previous tests have a path of size 1. This path has size 2.
+
+- Using graph 2 (data/cities2.csv and data/transport1.csv):
+    - Boston to Durham: Should be a single edge: (train, $3, 1 min)
+    - Durham to Boston: Not symmetrical! There does not exist a path from Durham to Boston; should be empty list.
+    - Boston to Chicago: Two correct paths: Boston -> Washington -> Chicago or Boston -> Durham -> Chicago. The path is determined by which vertex (Washington or Durham) is evaluated in BFS first.
+
+- Using graph 3 (data/test-graph-1.csv and data/test-transport-1.csv):
+    - Seattle to Boston: No path; empty list
+    - Boston to Boston: reflexivity; empty list
+    - Miami to Houston and Houston to Miami: Symmetrical, both paths should have the same edge
+
+- Using graph 4 (data/test-graph-2.csv and data/test-transport-2.csv):
+    - Ithaca to Albany: two identical modes of transportation; either is correct
+    - Albany to Rochester: more than two edges, two identical; correct edge doesn't matter
+    - Buffalo to Potsdam: long path (3 edges) with several potential detours
+    - Buffalo to Buffalo: reflexivity again; this time there is a path to Buffalo that is through the other vertices
+
+- Using graph 5 (data/test-graph-3.csv and data/test-transport-3.csv):
+    - Rome to Rome: single node with no edges should just return empty list
+
+Dijkstra:
+- Using graph 1 (data/cities1.csv and data/transport1.csv):
+    - New York City to Providence: The cheapest route is direct bus with $40, 220min, while the least time-consuming route is taking a plane to Boston (50min), and taking a train to Providence (80min). Total time is 130min.
+    - Boston to New York City: There is only one correct path: Plane ($267, 50 min). Checks correct output.
+    - Boston to Providence: There are two possible correct edges here. The cheapest route is bus ($7, 150 min), while the least-consuming route is train ($13, 80min).
+    - Providence to Boston: Check that bidirectional edges generate the same path regardless if source and target are switched.
+    - Providence to New York City: Check that bidirectional edges generate the same path if source and target are switched for paths of length 2.
+
+- Using graph 2 (data/cities2.csv and data/transport1.csv):
+    - Boston to Providence: The fastest path is direct train ($100, 1min), but the cheapest is train to Durham, Chicago, then Providence (total price $7).
+    - Boston to Durham: The fastest and cheapest path is direct train ($3, 1min).
+    - Boston to Chicago: The cheapest path is train via Durham, while for the fastest, via Durham and via Washington both cost 2min, the path is determined by which Durham and Washington is evaluated first.
+    - Providence to Boston: No outgoing edges, no cheapest or fastest path.
+    - Durham to Boston: Boston has no incoming edges, no cheapest or fastest path.
+    - Durham to Washington: No path, no cheapest or fastest path.
+
+- Using graph 3 (data/test-graph-1.csv and data/test-transport-1.csv):
+    - Boston to Boston: reflexivity; empty list
+    - Seattle to Miami and Miami to Seattle: Fastest route is direct bus (12min), while the cheapest route is via Houston. Symmetrical path.
+
+- Using graph 4 (data/test-graph-2.csv and data/test-transport-2.csv):
+    - Ithaca to Albany: two identical modes of transportation; either is correct
+    - Albany to Rochester: more than two edges, two identical; cheapest and shortest both plane ($2, 3min)
+    - Buffalo to Potsdam: long path: bus to Ithaca, train to Albany, bus to Rochester, train to Potsdam for both cheapest and shortest
+    - Buffalo to Buffalo: reflexivity again; this time there is a path to Buffalo that is through the other vertices
+
+- Using graph 5 (data/test-graph-3.csv and data/test-transport-3.csv):
+    - Rome to Rome: single node with no edges should just return empty list
+
+
+
+
+
